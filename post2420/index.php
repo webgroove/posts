@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', '1');
-error_reporting(E_ALL);
-
 const MAX_FILE_SIZE = 1000000; // 1メガバイト
 const ACCEPT_MIME_TYPES = [
   'zip' => 'application/zip',
