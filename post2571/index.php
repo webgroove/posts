@@ -1,0 +1,38 @@
+<?php
+$name_ruby = $_POST['name_ruby'] ?? '';
+
+if ($name_ruby) {
+
+  if (!checkFullWidthKatakana($name_ruby)) echo '<p>全角カタカナを入力してください。</p>';
+  if (!checkHalfWidthKatakana($name_ruby)) echo '<p>半角カタカナを入力してください。</p>';
+  if (!checkKatakana($name_ruby)) echo '<p>カタカナを入力してください。</p>';
+}
+
+function checkFullWidthKatakana(string $str): bool {
+  return !!preg_match("/\A[ァ-ヶー]+\z/u", $str);
+}
+
+function checkHalfWidthKatakana(string $str): bool {
+  return !!preg_match("/\A[ｦ-ﾟ]+\z/u", $str);
+}
+
+function checkKatakana(string $str): bool {
+  return !!preg_match("/\A[ァ-ヶｦ-ﾟー]+\z/u", $str);
+}
+
+?>
+
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<form method="post">
+  お名前（フリガナ）：<textarea name="name_ruby"></textarea>
+  <input type="submit" value="送信する">
+</form>
+
+</body>
+</html>
