@@ -38,30 +38,15 @@ if ($file) {
     }
   } else {
 
-    switch ($file_upload_err) {
-      case UPLOAD_ERR_INI_SIZE:
-      case UPLOAD_ERR_FORM_SIZE:
-        $file_upload_msg = UPLOAD_ERR_MSG_1;
-        break;
-      case UPLOAD_ERR_PARTIAL:
-        $file_upload_msg = UPLOAD_ERR_MSG_4;
-        break;
-      case UPLOAD_ERR_NO_FILE:
-        $file_upload_msg = UPLOAD_ERR_MSG_5;
-        break;
-      case UPLOAD_ERR_NO_TMP_DIR:
-        $file_upload_msg = UPLOAD_ERR_MSG_6;
-        break;
-      case UPLOAD_ERR_CANT_WRITE:
-        $file_upload_msg = UPLOAD_ERR_MSG_7;
-        break;
-      case UPLOAD_ERR_EXTENSION:
-        $file_upload_msg = UPLOAD_ERR_MSG_8;
-        break;
-      default:
-        $file_upload_msg = UPLOAD_ERR_MSG_9;
-        break;
-    }
+    $file_upload_msg = match ($file_upload_err) {
+      UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => UPLOAD_ERR_MSG_1,
+      UPLOAD_ERR_PARTIAL => UPLOAD_ERR_MSG_4,
+      UPLOAD_ERR_NO_FILE => UPLOAD_ERR_MSG_5,
+      UPLOAD_ERR_NO_TMP_DIR => UPLOAD_ERR_MSG_6,
+      UPLOAD_ERR_CANT_WRITE => UPLOAD_ERR_MSG_7,
+      UPLOAD_ERR_EXTENSION => UPLOAD_ERR_MSG_8,
+      default => UPLOAD_ERR_MSG_9,
+    };
   }
 }
 
