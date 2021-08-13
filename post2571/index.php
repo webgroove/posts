@@ -8,16 +8,16 @@ if ($name_ruby) {
   if (!checkKatakana($name_ruby)) echo '<p>カタカナを入力してください。</p>';
 }
 
-function checkFullWidthKatakana(string $str): bool {
-  return !!preg_match("/\A[ァ-ヶー]+\z/u", $str);
+function checkFullWidthKatakana(string $str): int|false {
+  return preg_match("/\A[ァ-ヶー]+\z/u", $str);
 }
 
-function checkHalfWidthKatakana(string $str): bool {
-  return !!preg_match("/\A[ｦ-ﾟ]+\z/u", $str);
+function checkHalfWidthKatakana(string $str): int|false {
+  return preg_match("/\A[ｦ-ﾟ]+\z/u", $str);
 }
 
-function checkKatakana(string $str): bool {
-  return !!preg_match("/\A[ァ-ヶｦ-ﾟー]+\z/u", $str);
+function checkKatakana(string $str): int|false {
+  return preg_match("/\A[ァ-ヶｦ-ﾟー]+\z/u", $str);
 }
 
 ?>
@@ -30,7 +30,7 @@ function checkKatakana(string $str): bool {
 <body>
 
 <form method="post">
-  お名前（フリガナ）：<textarea name="name_ruby"></textarea>
+  お名前（フリガナ）：<input type="text" name="name_ruby">
   <input type="submit" value="送信する">
 </form>
 
