@@ -17,7 +17,7 @@ function checkHalfWidthKatakana(string $str): int|false {
 }
 
 function checkKatakana(string $str): int|false {
-  return preg_match("/\A[ァ-ヶｦ-ﾟー]+\z/u", $str);
+  return preg_match("/\A[ァ-ヴｦ-ﾟー]+\z/u", $str);
 }
 
 ?>
