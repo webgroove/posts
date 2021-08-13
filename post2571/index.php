@@ -9,7 +9,7 @@ if ($name_ruby) {
 }
 
 function checkFullWidthKatakana(string $str): int|false {
-  return preg_match("/\A[ァ-ヶー]+\z/u", $str);
+  return preg_match("/\A[ァ-ヴー]+\z/u", $str);
 }
 
 function checkHalfWidthKatakana(string $str): int|false {
