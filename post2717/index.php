@@ -1,11 +1,11 @@
 <?php
-$kanji_1 = $_POST['kanji1'] ?? '';
+$kanji = $_POST['kanji'] ?? '';
 $kanji_2 = $_POST['kanji2'] ?? '';
 $kanji_3 = $_POST['kanji3'] ?? '';
 
-if ($kanji_1) {
+if ($kanji) {
 
-  if (checkKanji($kanji_1)) echo '<p>漢字の入力チェック結果 : OK</p>';
+  if (checkKanji($kanji)) echo '<p>漢字の入力チェック結果 : OK</p>';
   else echo '<p>漢字の入力チェック結果 : NG</p>';
 }
 
@@ -45,7 +45,7 @@ function checkKanji3(string $str): int|false {
 <hr>
 <form method="post">
   <p>
-    漢字：<input type="text" name="kanji1">
+    漢字：<input type="text" name="kanji">
   </p>
   <p>
     漢字（ブロック毎）：<input type="text" name="kanji2">
