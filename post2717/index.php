@@ -5,20 +5,20 @@ $kanji_3 = $_POST['kanji3'] ?? '';
 
 if ($kanji_1) {
 
-  if (!checkKanji($kanji_1)) echo '<p>漢字の入力チェック結果 : NG</p>';
-  else echo '<p>漢字の入力チェック結果 : OK</p>';
+  if (checkKanji($kanji_1)) echo '<p>漢字の入力チェック結果 : OK</p>';
+  else echo '<p>漢字の入力チェック結果 : NG</p>';
 }
 
 if ($kanji_2) {
 
-  if (!checkKanji2($kanji_2)) echo '<p>漢字（ブロック毎）の入力チェック結果 : NG</p>';
-  else echo '<p>漢字（ブロック毎）の入力チェック結果 : OK</p>';
+  if (checkKanji2($kanji_2)) echo '<p>漢字（ブロック毎）の入力チェック結果 : OK</p>';
+  else echo '<p>漢字（ブロック毎）の入力チェック結果 : NG</p>';
 }
 
 if ($kanji_3) {
 
-  if (!checkKanji3($kanji_3)) echo '<p>漢字（Unicode 文字プロパティ）の入力チェック結果 : NG</p>';
-  else echo '<p>漢字（Unicode 文字プロパティ）の入力チェック結果 : OK</p>';
+  if (checkKanji3($kanji_3)) echo '<p>漢字（Unicode 文字プロパティ）の入力チェック結果 : OK</p>';
+  else echo '<p>漢字（Unicode 文字プロパティ）の入力チェック結果 : NG</p>';
 }
 
 function checkKanji(string $str): int|false {
@@ -30,7 +30,7 @@ function checkKanji2(string $str): int|false {
 }
 
 function checkKanji3(string $str): int|false {
-  return preg_match("/\A[\p{Han}]+\z/u", $str);
+  return preg_match("/\A\p{Han}+\z/u", $str);
 }
 
 ?>
