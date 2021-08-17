@@ -26,7 +26,7 @@ function checkKanji(string $str): int|false {
 }
 
 function checkKanji2(string $str): int|false {
-  return preg_match("/\A[々〇〻\x{3400}-\x{4DBF}\x{4E00}-\x{9FFC}\x{F900}-\x{FAD9}\x{20000}-\x{2A6DD}\x{2A700}-\x{2B734}\x{2B740}-\x{2B81D}\x{2B820}-\x{2CEA1}\x{2CEB0}-\x{2EBE0}\x{30000}-\x{3134A}]+\z/u", $str);
+  return preg_match("/\A[々〇〻\x{3400}-\x{4DBF}\x{4E00}-\x{9FFC}\x{F900}-\x{FAD9}\x{20000}-\x{2A6DD}\x{2A700}-\x{2B734}\x{2B740}-\x{2B81D}\x{2B820}-\x{2CEA1}\x{2CEB0}-\x{2EBE0}x{2F800}-\x{2FA1F}\x{30000}-\x{3134A}]+\z/u", $str);
 }
 
 function checkKanji3(string $str): int|false {
