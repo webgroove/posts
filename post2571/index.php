@@ -1,15 +1,28 @@
 <?php
-$name_ruby = $_POST['name_ruby'] ?? '';
+$fullwidth_katakana = $_POST['fullwidthKatakana'] ?? '';
+$halfwidth_katakana = $_POST['halfwidthKatakana'] ?? '';
+$katakana = $_POST['katakana'] ?? '';
 
-if ($name_ruby) {
+if ($fullwidth_katakana) {
 
-  if (!checkFullWidthKatakana($name_ruby)) echo '<p>全角カタカナを入力してください。</p>';
-  if (!checkHalfWidthKatakana($name_ruby)) echo '<p>半角カタカナを入力してください。</p>';
-  if (!checkKatakana($name_ruby)) echo '<p>カタカナを入力してください。</p>';
+  if (checkFullWidthKatakana($fullwidth_katakana)) echo '<p>全角カタカナの入力チェック結果 : OK</p>';
+  else echo '<p>全角カタカナの入力チェック結果 : NG</p>';
+}
+
+if ($halfwidth_katakana) {
+
+  if (checkHalfWidthKatakana($halfwidth_katakana)) echo '<p>半角カタカナの入力チェック結果 : OK</p>';
+  else echo '<p>半角カタカナの入力チェック結果 : NG</p>';
+}
+
+if ($katakana) {
+
+  if (checkKatakana($katakana)) echo '<p>カタカナの入力チェック結果 : OK</p>';
+  else echo '<p>カタカナの入力チェック結果 : NG</p>';
 }
 
 function checkFullWidthKatakana(string $str): int|false {
-  return preg_match("/\A[ァ-ヴー]+\z/u", $str);
+  return preg_match("/\A[ァ-ヿ]+\z/u", $str);
 }
 
 function checkHalfWidthKatakana(string $str): int|false {
@@ -17,7 +30,7 @@ function checkHalfWidthKatakana(string $str): int|false {
 }
 
 function checkKatakana(string $str): int|false {
-  return preg_match("/\A[ァ-ヴｦ-ﾟー]+\z/u", $str);
+  return preg_match("/\A\p{Katakana}+\z/u", $str);
 }
 
 ?>
@@ -29,8 +42,17 @@ function checkKatakana(string $str): int|false {
 </head>
 <body>
 
+<hr>
 <form method="post">
-  お名前（フリガナ）：<input type="text" name="name_ruby">
+  <p>
+    全角カタカナ：<input type="text" name="fullwidthKatakana">
+  </p>
+  <p>
+    半角カタカナ：<input type="text" name="halfwidthKatakana">
+  </p>
+  <p>
+    カタカナ（Unicode 文字プロパティ）：<input type="text" name="katakana">
+  </p>
   <input type="submit" value="送信する">
 </form>
 
