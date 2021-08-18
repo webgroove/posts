@@ -7,32 +7,32 @@ $phone_number_3 = $_POST['phoneNumber3'] ?? '';
 
 if ($land_line) {
 
-  if (!checkLandline($land_line)) echo '<p>固定電話番号の入力チェック結果 : NG</p>';
-  else echo '<p>固定電話番号の入力チェック結果 : OK</p>';
+  if (checkLandline($land_line)) echo '<p>固定電話番号の入力チェック結果 : OK</p>';
+  else echo '<p>固定電話番号の入力チェック結果 : NG</p>';
 }
 
 if ($phone_number) {
 
-  if (!checkPhoneNumber($phone_number)) echo '<p>携帯電話番号の入力チェック結果 : NG</p>';
-  else echo '<p>携帯電話番号の入力チェック結果 : OK</p>';
+  if (checkPhoneNumber($phone_number)) echo '<p>携帯電話番号の入力チェック結果 : OK</p>';
+  else echo '<p>携帯電話番号の入力チェック結果 : NG</p>';
 }
 
 if ($freephone_number) {
 
-  if (!checkFreephoneNumber($freephone_number)) echo '<p>フリーダイヤルの入力チェック結果 : NG</p>';
-  else echo '<p>フリーダイヤルの入力チェック結果 : OK</p>';
+  if (checkFreephoneNumber($freephone_number)) echo '<p>フリーダイヤルの入力チェック結果 : OK</p>';
+  else echo '<p>フリーダイヤルの入力チェック結果 : NG</p>';
 }
 
 if ($phone_number_2) {
 
-  if (!checkPhoneNumber2($phone_number_2)) echo '<p>固定電話番号 + 携帯電話番号の入力チェック結果 : NG</p>';
-  else echo '<p>固定電話番号 + 携帯電話番号の入力チェック結果 : OK</p>';
+  if (checkPhoneNumber2($phone_number_2)) echo '<p>固定電話番号 + 携帯電話番号の入力チェック結果 : OK</p>';
+  else echo '<p>固定電話番号 + 携帯電話番号の入力チェック結果 : NG</p>';
 }
 
 if ($phone_number_3) {
 
-  if (!checkPhoneNumber3($phone_number_3)) echo '<p>固定電話番号 + 携帯電話番号 + フリーダイヤルの入力チェック結果 : NG</p>';
-  else echo '<p>固定電話番号 + 携帯電話番号 + フリーダイヤルの入力チェック結果 : OK</p>';
+  if (checkPhoneNumber3($phone_number_3)) echo '<p>固定電話番号 + 携帯電話番号 + フリーダイヤルの入力チェック結果 : OK</p>';
+  else echo '<p>固定電話番号 + 携帯電話番号 + フリーダイヤルの入力チェック結果 : NG</p>';
 }
 
 function checkLandline(string $str): int|false {
