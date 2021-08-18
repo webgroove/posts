@@ -1,7 +1,9 @@
 <?php
-$inquiry = $_POST['inquiry'] ?? '';
+$escape = $_POST['escape'] ?? '';
+$no_escape = $_POST['noEscape'] ?? '';
 
-$inquiry = h($inquiry);
+if ($escape) echo h($escape);
+if ($no_escape) echo $no_escape;
 
 function h(string $str): string {
   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
@@ -16,11 +18,16 @@ function h(string $str): string {
 </head>
 <body>
 
+<hr>
 <form method="post">
-  お問い合わせ内容：<textarea name="inquiry"></textarea>
+  <p>
+    エスケープ処理する：<input type="text" name="escape">
+  </p>
+  <p>
+    エスケープ処理しない：<input type="text" name="noEscape">
+  </p>
   <input type="submit" value="送信する">
 </form>
-<p><?= $inquiry ?></p>
 
 </body>
 </html>
