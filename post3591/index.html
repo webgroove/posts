@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link href="style.css" rel="stylesheet">
+<script src="questionnaire.js" defer></script>
+</head>
+<body>
+
+<h1>アンケート</h1>
+<form id="form">
+  <table>
+    <tr>
+      <th>メールアドレス（半角）<span class="required"></span></th>
+      <td>
+        <input type="email" id="email" name="email">
+      </td>
+    </tr>
+    <tr>
+      <th>アンケート内容<span class="required"></span></th>
+      <td>
+        <textarea id="message" name="message" rows="5" cols="40"></textarea>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<button id="confirmButton">確認する</button>
+
+<div id="overlay" class="overlay"></div>
+
+<div id="confirmModal" class="modal-confirm">
+  <table>
+    <tr>
+      <th>メールアドレス</th>
+      <td id="confirmEmail"></td>
+    </tr>
+    <tr>
+      <th>アンケート内容</th>
+      <td id="confirmMessage"></td>
+    </tr>
+    <input type="hidden" id="csrfToken">
+  </table>
+  <div class="button-wrapper">
+    <button id="backButton">閉じる</button>
+    <button id="sendButton">送信する</button>
+  </div>
+</div>
+
+<div id="completeModal" class="modal-complete">
+  <p>送信が完了しました。</p>
+  <div class="button-wrapper">
+    <button id="completeButton">完了</button>
+  </div>
+</div>
+
+</body>
+</html>

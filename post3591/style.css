@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+th {
+  white-space: nowrap;
+}
+
+ul {
+  list-style: none;
+}
+
+.button-wrapper {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.required::after {
+  content: "必須";
+  background-color: #f18485;
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 7px;
+  margin: 0px 5px;
+  vertical-align: middle;
+  border-radius: 9px;
+}
+
+.modal-confirm, .modal-complete {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: .6s;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: thin solid;
+  z-index: 2;
+}
+
+.modal-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  background-color: black;
+  z-index: 1;
+}
+
+.overlay-show {
+  opacity: 0.7;
+  visibility: visible;
+}
