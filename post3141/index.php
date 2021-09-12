@@ -12,13 +12,13 @@ if ($from && $message) {
 }
 
 function sendEmail(string $from, string $to, string $subject, string $message): bool {
-  mb_language('ja');
-  mb_internal_encoding('UTF-8');
-
   $headers = [
     'From' => $from,
     'Reply-To' => $from,
   ];
+
+  mb_language('ja');
+  mb_internal_encoding('UTF-8');
   return mb_send_mail($to, $subject, $message, $headers);
 }
 
