@@ -12,9 +12,6 @@ if ($from && $message) {
 }
 
 function sendEmail(string $from, string $to, string $subject, string $message): bool {
-  mb_language('ja');
-  mb_internal_encoding('UTF-8');
-
   ob_start();
   include __DIR__ . '/mail.tpl';
   $mail_template = ob_get_contents();
@@ -28,6 +25,9 @@ function sendEmail(string $from, string $to, string $subject, string $message): 
     'From' => $from,
     'Reply-To' => $from,
   ];
+
+  mb_language('ja');
+  mb_internal_encoding('UTF-8');
   return mb_send_mail($to, $subject, $body, $headers);
 }
 
