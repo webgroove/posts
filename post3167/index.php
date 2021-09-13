@@ -1,14 +1,16 @@
 <?php
-$to = 'test@example.com';
+$to = '';
 $subject = 'メールの送信テストです。';
 
-$from = $_POST['from'] ?? '';
+$email = $_POST['email'] ?? '';
 $message = $_POST['message'] ?? '';
 
-if ($from && $message) {
+if ($email && $message) {
 
-  if (sendEmail($from, $to, $subject, $message)) echo 'メールの送信に成功しました。';
-  else echo 'メールの送信に失敗しました。';
+  if (checkEmail($email)) {
+    if (sendEmail($email, $to, $subject, $message)) echo 'メールの送信に成功しました。';
+    else echo 'メールの送信に失敗しました。';
+  } else echo 'メールアドレスが正しくありません。';
 }
 
 function sendEmail(string $from, string $to, string $subject, string $message): bool {
@@ -31,6 +33,14 @@ function sendEmail(string $from, string $to, string $subject, string $message): 
   return mb_send_mail($to, $subject, $body, $headers);
 }
 
+function checkEmail(string $email): bool {
+  $array = explode('@', $email);
+  $domain_part = array_pop($array);
+
+  return filter_var($email, FILTER_VALIDATE_EMAIL) !== false &&
+    (checkdnsrr($domain_part) || checkdnsrr($domain_part, 'A') || checkdnsrr($domain_part, 'AAAA'));
+}
+
 ?>
 
 <!doctype html>
@@ -43,7 +53,7 @@ function sendEmail(string $from, string $to, string $subject, string $message): 
 <hr>
 <form method="post">
   <p>
-    メールアドレス：<input type="text" name="from">
+    メールアドレス：<input type="text" name="email">
   </p>
   <p>
     お問い合わせ内容：<textarea name="message"></textarea>
